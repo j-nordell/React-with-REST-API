@@ -1,19 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import Courses from './components/Courses';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      </header>
-
+    <div className="bounds">
+      <Courses />
     </div>
   );
 }
-
-fetch('http://localhost:5000/api/courses')
-    .then(response => response.json())
-    .then(data => console.log(data));
 
 export default App;
