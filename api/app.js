@@ -2,6 +2,7 @@
 
 // load modules
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 var sequelize = require('./models').sequelize;
@@ -16,6 +17,9 @@ const users = require('./routes/users');
 
 // create the Express app
 const app = express();
+
+// enable pre-flight across the board
+app.options('*', cors());
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
