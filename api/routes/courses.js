@@ -4,6 +4,7 @@ const router = express.Router();
 const Course = require('../models').Course;
 const User = require('../models').User;
 const { Op } = require("sequelize");
+const cors = require('cors');
 const { authenticateUser } = require('../middleware/auth-user');
 
 // Handler function to wrap each route. 
@@ -18,7 +19,7 @@ function asyncHandler(cb){
 }
 
 // Courses listing for all courses including the teacher
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', cors(), asyncHandler(async (req, res) => {
   const courses = await Course.findAll({ attributes: { exclude: ['createdAt', 'updatedAt']} });
   let courseList = []
   for(let course of courses) {
@@ -29,7 +30,7 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 // Create a course if authenticated
-router.post('/', authenticateUser(true), asyncHandler( async (req, res) => {
+router.post('/', cors(), authenticateUser(true), asyncHandler( async (req, res) => {
   let course = req.body;
   const errors = [];
   
@@ -54,7 +55,7 @@ router.post('/', authenticateUser(true), asyncHandler( async (req, res) => {
 }));
 
 /* Course listing for a single course including the teacher*/
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/:id', cors(), asyncHandler(async (req, res) => {
   let course = await Course.findByPk(req.params.id, {attributes: { exclude: ['createdAt', 'updatedAt']}});
   if(course) {
     let teacher = await course.getTeacher({ attributes: { exclude: ['createdAt', 'updatedAt', 'password']} });
@@ -65,7 +66,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }));
 
 // Update a course if authenticated and owner
-router.put('/:id', authenticateUser(true), asyncHandler(async (req, res) => {
+router.put('/:id', cors(), authenticateUser(true), asyncHandler(async (req, res) => {
     const course = await Course.findByPk(req.params.id);
     const user = req.currentUser;
     const errors = [];
@@ -94,7 +95,7 @@ router.put('/:id', authenticateUser(true), asyncHandler(async (req, res) => {
 ));
 
 // Delete a course if authenticated and owner
-router.delete('/:id', authenticateUser(true), asyncHandler(async (req, res) => {
+router.delete('/:id', cors(), authenticateUser(true), asyncHandler(async (req, res) => {
   const course = await Course.findByPk(req.params.id);
   const user = req.currentUser;
   if(user.id == course.userId) {

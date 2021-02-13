@@ -7,6 +7,7 @@ const User = require('../models').User;
 const { Op } = require("sequelize");
 const bcrypt = require('bcryptjs');
 const users = [];
+const cors = require('cors');
 const { authenticateUser } = require('../middleware/auth-user');
 
  /* Handler function to wrap each route. */
@@ -21,7 +22,7 @@ const { authenticateUser } = require('../middleware/auth-user');
 }
 
 /* Return the currently authenticated user */
-router.get('/', authenticateUser(false), asyncHandler(async (req, res) => {
+router.get('/', cors(), authenticateUser(false), asyncHandler(async (req, res) => {
   const user = req.currentUser;
   
   if(!user){
@@ -33,7 +34,7 @@ router.get('/', authenticateUser(false), asyncHandler(async (req, res) => {
 }));
 
 /* Create a user */
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/',cors(), asyncHandler(async (req, res) => {
   let user = req.body;
   const errors = [];
 
@@ -82,7 +83,7 @@ router.post('/', asyncHandler(async (req, res) => {
 }));
 
 /* Gets a single user */
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/:id', cors(), asyncHandler(async (req, res) => {
   let user;
   user = await User.findByPk(req.params.id);
   if(user) {
