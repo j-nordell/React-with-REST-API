@@ -8,13 +8,13 @@ function UserSignIn() {
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
         </div>
-        <form>
+        <form method="POST">
           <div>
-            <label for="emailAddress" className="">Email address</label>
+            <label htmlFor="emailAddress">Email address</label>
             <input id="emailAddress" name="emailAddress" type="text" className="" placeholder="Email Address" value="" />
           </div>
           <div>
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input id="password" name="password" type="password" className="" placeholder="Password" value="" />
           </div>
           <div className="grid-100 pad-bottom">
