@@ -27,6 +27,7 @@ function App() {
             <Switch>
               <Route exact path="/" render={ () => <Courses /> } />
               <Route exact path="/courses/create" render={ () => <CreateCourse />} />
+              <Route exact path="/courses/:id/update" render={ (props) => <UpdateCourse id={props.match.params.id}/>} />
               <Route exact path="/courses/:id" render={(props) => <CourseDetail id={props.match.params.id }/> } />
               <Route exact path="/signin" render={() => <UserSignIn />} />
               <Route exact path="/signup" render={() => <UserSignUp />} />
