@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
+import CreateCourse from './components/CreateCourse';
 import {
   BrowserRouter,
   Redirect,
@@ -25,6 +26,7 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" render={ () => <Courses /> } />
+              <Route exact path="/courses/create" render={ () => <CreateCourse />} />
               <Route exact path="/courses/:id" render={(props) => <CourseDetail id={props.match.params.id }/> } />
               <Route exact path="/signin" render={() => <UserSignIn />} />
               <Route exact path="/signup" render={() => <UserSignUp />} />
