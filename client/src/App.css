@@ -751,3 +751,10 @@ input:focus {
 .course--description textarea {
   margin-bottom: 20px;
 }
+
+label {
+  display: block;
+  color: #63537d;
+  margin-bottom: 10px;
+  font-size: 16px;
+}

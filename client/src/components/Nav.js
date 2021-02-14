@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 /**
- * Returns the HTML for the navigation including the hard-coded links
+ * Returns the HTML for the navigation 
  */
 const Nav = () => {
   return(

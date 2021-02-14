@@ -13,8 +13,6 @@ function CourseDetail(props) {
         .finally(() => setIsLoading(false));
   }, [props.id]);
 
-  console.log(course);
-
   return(
     <div className="bounds course--detail">
       <div className="grid-66">

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Courses from './components/Courses';
 import Nav from './components/Nav';
 import CourseDetail from './components/CourseDetail';
+import UserSignIn from './components/UserSignIn';
 import {
   BrowserRouter,
   Redirect,
@@ -24,6 +25,7 @@ function App() {
             <Switch>
               <Route exact path="/" render={ () => <Courses /> } />
               <Route exact path="/courses/:id" render={(props) => <CourseDetail id={props.match.params.id }/> } />
+              <Route exact path="/signin" render={() => <UserSignIn />} />
             </Switch>
           </div>
       </BrowserRouter>
